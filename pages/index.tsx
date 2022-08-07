@@ -1,8 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { ColorPalette } from "../components/ColorPalette";
+import Grid from "../components/Grid";
 import Layout from "../components/Layout";
 import { Color } from "../models/types";
+
+const createEmptyGrid = (numRows: number, numCols: number): Color[][] =>
+  new Array(numRows).fill(new Array(numCols).fill("#fff"));
 
 const Home: NextPage = () => {
   const colors: Color[] = [
@@ -13,6 +17,7 @@ const Home: NextPage = () => {
     "#c2eec7",
     "#eed2e8",
   ];
+  const grid = createEmptyGrid(25, 25);
 
   return (
     <>
@@ -24,7 +29,7 @@ const Home: NextPage = () => {
 
       <Layout
         colorPalette={<ColorPalette colors={colors} />}
-        grid={<div>grid</div>}
+        grid={<Grid grid={grid} />}
         actions={<div>actions</div>}
       />
     </>
