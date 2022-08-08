@@ -2,23 +2,35 @@ import { ReactElement } from "react";
 import styled from "styled-components";
 
 const LayoutContainer = styled.div`
-  background-color: red;
-  height: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 `;
 
-const ColorPaletteContainer = styled.div`
-  background-color: blue;
-  height: 200px;
+const TitleContainer = styled.div`
+  font-size: 2rem;
+  padding: 30px;
+  text-align: center;
 `;
 
 const GridContainer = styled.div`
-  background-color: yellow;
-  height: 200px;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+`;
+
+const ColorActionsContainer = styled.div`
+  display: flex;
+`;
+
+const ColorPaletteContainer = styled.div`
+  flex: 1;
 `;
 
 const ActionsContainer = styled.div`
-  background-color: green;
-  height: 200px;
+  height: 100px;
+  padding: 40px;
 `;
 
 type Props = {
@@ -30,9 +42,12 @@ type Props = {
 const Layout = ({ colorPalette, grid, actions }: Props) => {
   return (
     <LayoutContainer>
-      <ColorPaletteContainer>{colorPalette}</ColorPaletteContainer>
+      <TitleContainer>Pixel Art App</TitleContainer>
       <GridContainer>{grid}</GridContainer>
-      <ActionsContainer>{actions}</ActionsContainer>
+      <ColorActionsContainer>
+        <ColorPaletteContainer>{colorPalette}</ColorPaletteContainer>
+        <ActionsContainer>{actions}</ActionsContainer>
+      </ColorActionsContainer>
     </LayoutContainer>
   );
 };

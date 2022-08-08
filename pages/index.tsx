@@ -17,7 +17,26 @@ const Home: NextPage = () => {
     "#d3ece1",
     "#c2eec7",
     "#eed2e8",
+    "#fcdabe",
+    "#f2c7cc",
+    "#C0C2E2",
+    "#C2E7F1",
+    "#D7F2CE",
+    "#F3FBD2",
+    "#CC99C9",
+    "#9EC1CF",
+    "#9EE09E",
+    "#FDFD97",
+    "#FEB144",
+    "#FF6663",
+    "#0151FF",
+    "#45BD46",
+    "#FFED16",
+    "#FF8500",
+    "#E40B27",
+    "#000",
   ];
+
   const grid = createEmptyGrid(25, 25);
   const [selected, setSelected] = useState<Color | null>(null);
 
@@ -38,7 +57,7 @@ const Home: NextPage = () => {
           />
         }
         grid={<Grid grid={grid} />}
-        actions={<div>actions</div>}
+        actions={<button>SAVE :D</button>}
       />
     </>
   );
