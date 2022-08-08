@@ -1,8 +1,19 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { ColorPalette } from "../components/ColorPalette";
 import Layout from "../components/Layout";
+import { Color } from "../models/types";
 
 const Home: NextPage = () => {
+  const colors: Color[] = [
+    "#fff",
+    "#f6dbdb",
+    "#f2e3c6",
+    "#d3ece1",
+    "#c2eec7",
+    "#eed2e8",
+  ];
+
   return (
     <>
       <Head>
@@ -12,7 +23,7 @@ const Home: NextPage = () => {
       </Head>
 
       <Layout
-        colorPalette={<div>colorPalette</div>}
+        colorPalette={<ColorPalette colors={colors} />}
         grid={<div>grid</div>}
         actions={<div>actions</div>}
       />
