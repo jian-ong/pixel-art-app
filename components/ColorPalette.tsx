@@ -6,7 +6,6 @@ const ColorCell = styled.button<{ color: string; selected: boolean }>`
   ${(props) => `background-color: ${props.color}`};
   height: 100px;
   width: 100px;
-  border: 1px solid whitesmoke;
 `;
 
 const Container = styled.div`
