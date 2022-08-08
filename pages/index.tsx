@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useState } from "react";
 import { ColorPalette } from "../components/ColorPalette";
 import Grid from "../components/Grid";
 import Layout from "../components/Layout";
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
     "#eed2e8",
   ];
   const grid = createEmptyGrid(25, 25);
+  const [selected, setSelected] = useState<Color | null>(null);
 
   return (
     <>
@@ -28,7 +30,13 @@ const Home: NextPage = () => {
       </Head>
 
       <Layout
-        colorPalette={<ColorPalette colors={colors} />}
+        colorPalette={
+          <ColorPalette
+            colors={colors}
+            selected={selected}
+            onSelect={(color) => setSelected(color)}
+          />
+        }
         grid={<Grid grid={grid} />}
         actions={<div>actions</div>}
       />
