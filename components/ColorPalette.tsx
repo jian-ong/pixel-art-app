@@ -1,9 +1,11 @@
+import Image from "next/image";
 import styled from "styled-components";
 import { Color } from "../models/types";
+import png from "./assets/color-picker.png";
 
-const ColorCell = styled.button<{ color: string; selected: boolean }>`
-  border: 1px solid ${({ selected }) => (selected ? "red" : "black")};
-  ${(props) => `background-color: ${props.color}`};
+const ColorCell = styled.button<{ color: string }>`
+  border: 1px solid whitesmoke;
+  background-color: ${(props) => props.color};
   height: 100px;
   width: 100px;
 `;
@@ -25,12 +27,9 @@ export const ColorPalette = ({
   return (
     <Container>
       {colors.map((color: Color) => (
-        <ColorCell
-          key={color}
-          color={color}
-          selected={color === selected}
-          onClick={() => onSelect(color)}
-        />
+        <ColorCell key={color} color={color} onClick={() => onSelect(color)}>
+          {color === selected ? <Image src={png} alt="color" /> : null}
+        </ColorCell>
       ))}
     </Container>
   );
