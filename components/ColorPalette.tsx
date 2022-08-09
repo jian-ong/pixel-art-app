@@ -17,18 +17,18 @@ const Container = styled.div`
 
 export const ColorPalette = ({
   colors,
-  selected,
+  selectedColor,
   onSelect,
 }: {
   colors: Color[];
-  selected: Color | null;
+  selectedColor: Color | null;
   onSelect: (color: Color) => void;
 }) => {
   return (
     <Container>
       {colors.map((color: Color) => (
         <ColorCell key={color} color={color} onClick={() => onSelect(color)}>
-          {color === selected ? <Image src={png} alt="color" /> : null}
+          {color === selectedColor ? <Image src={png} alt="color" /> : null}
         </ColorCell>
       ))}
     </Container>

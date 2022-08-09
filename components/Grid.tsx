@@ -15,15 +15,20 @@ const Col = styled.div<{ color: Color }>`
 
 type Props = {
   grid: Color[][];
+  onCellSelect: (rowIndex: number, colIndex: number) => void;
 };
 
-const Grid = ({ grid }: Props) => {
+const Grid = ({ grid, onCellSelect }: Props) => {
   return (
     <div>
-      {grid.map((row, i) => (
-        <Row key={i}>
-          {row.map((col, i) => (
-            <Col key={i} color={col}></Col>
+      {grid.map((row, rowIndex) => (
+        <Row key={rowIndex}>
+          {row.map((col, colIndex) => (
+            <Col
+              key={colIndex}
+              color={col}
+              onClick={() => onCellSelect(rowIndex, colIndex)}
+            ></Col>
           ))}
         </Row>
       ))}
