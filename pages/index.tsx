@@ -37,8 +37,25 @@ const Home: NextPage = () => {
     "#000",
   ];
 
-  const grid = createEmptyGrid(25, 25);
-  const [selected, setSelected] = useState<Color | null>(null);
+  const [grid, setGrid] = useState<Color[][]>(createEmptyGrid(25, 25));
+
+  const [selectedColor, setSelectedColor] = useState<Color | null>(null);
+
+  const handleCellSelect = (
+    selectedRowIndex: number,
+    selectedColIndex: number
+  ) => {
+    if (selectedColor) {
+      const newGrid = grid.map((row, rowIndex) =>
+        rowIndex === selectedRowIndex
+          ? row.map((col, colIndex) =>
+              colIndex === selectedColIndex ? selectedColor : col
+            )
+          : row
+      );
+      setGrid(newGrid);
+    }
+  };
 
   return (
     <>
@@ -52,11 +69,11 @@ const Home: NextPage = () => {
         colorPalette={
           <ColorPalette
             colors={colors}
-            selected={selected}
-            onSelect={(color) => setSelected(color)}
+            selectedColor={selectedColor}
+            onSelect={(color) => setSelectedColor(color)}
           />
         }
-        grid={<Grid grid={grid} />}
+        grid={<Grid onCellSelect={handleCellSelect} grid={grid} />}
         actions={<button>SAVE :D</button>}
       />
     </>
