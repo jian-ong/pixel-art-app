@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
+import { decodeHashToGrid, encodeGridToHash } from "../components/hash";
 import { ColorPalette } from "../components/ColorPalette";
 import Grid from "../components/Grid";
 import Layout from "../components/Layout";
@@ -41,6 +42,8 @@ const Home: NextPage = () => {
 
   const [selectedColor, setSelectedColor] = useState<Color | null>(null);
 
+  const resetGrid = () => setGrid(createEmptyGrid(25, 25));
+
   const handleCellSelect = (
     selectedRowIndex: number,
     selectedColIndex: number
@@ -74,7 +77,12 @@ const Home: NextPage = () => {
           />
         }
         grid={<Grid onCellSelect={handleCellSelect} grid={grid} />}
-        actions={<button>SAVE :D</button>}
+        actions={
+          <>
+            <button onClick={() => encodeGridToHash(grid)}>save</button>
+            <button onClick={() => resetGrid()}>reset</button>
+          </>
+        }
       />
     </>
   );
