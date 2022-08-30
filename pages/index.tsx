@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
-import { decodeHashToGrid, encodeGridToHash } from "../components/hash";
+import { copyHashToClipboard } from "../components/hash";
 import { ColorPalette } from "../components/ColorPalette";
 import Grid from "../components/Grid";
 import Layout from "../components/Layout";
@@ -79,7 +79,7 @@ const Home: NextPage = () => {
         grid={<Grid onCellSelect={handleCellSelect} grid={grid} />}
         actions={
           <>
-            <button onClick={() => encodeGridToHash(grid)}>save</button>
+            <button onClick={() => copyHashToClipboard(grid)}>save</button>
             <button onClick={() => resetGrid()}>reset</button>
           </>
         }

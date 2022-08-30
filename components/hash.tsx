@@ -13,3 +13,10 @@ export const decodeHashToGrid = (hash: string): Color[][] => {
   const grid = LZUTF8.decompress(compressedGrid);
   return grid.split(",");
 };
+
+export const copyHashToClipboard = (grid: Color[][]) => {
+  const encodedHash = encodeURIComponent(encodeGridToHash(grid));
+  const urlForCopy = new URL(window.location.href).origin;
+
+  navigator.clipboard.writeText(`${urlForCopy}?hash=${encodedHash}`);
+};
