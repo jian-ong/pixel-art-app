@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
-import { copyHashToClipboard } from "../components/hash";
+import { copyHashToClipboard, decodeHashToGrid } from "../components/hash";
 import { ColorPalette } from "../components/ColorPalette";
 import Grid from "../components/Grid";
 import Layout from "../components/Layout";
@@ -10,7 +10,7 @@ import { Color } from "../models/types";
 const createEmptyGrid = (numRows: number, numCols: number): Color[][] =>
   new Array(numRows).fill(new Array(numCols).fill("#fff"));
 
-const Home: NextPage = () => {
+const Home: NextPage<{ initialGrid: Color[][] }> = ({ initialGrid }) => {
   const colors: Color[] = [
     "#fff",
     "#f6dbdb",
@@ -37,8 +37,7 @@ const Home: NextPage = () => {
     "#E40B27",
     "#000",
   ];
-
-  const [grid, setGrid] = useState<Color[][]>(createEmptyGrid(25, 25));
+  const [grid, setGrid] = useState<Color[][]>(initialGrid);
 
   const [selectedColor, setSelectedColor] = useState<Color | null>(null);
 
@@ -87,5 +86,12 @@ const Home: NextPage = () => {
     </>
   );
 };
+
+export async function getServerSideProps({ query }: any) {
+  const initialGrid = query.hash
+    ? decodeHashToGrid(query.hash)
+    : createEmptyGrid(25, 25);
+  return { props: { initialGrid } };
+}
 
 export default Home;
