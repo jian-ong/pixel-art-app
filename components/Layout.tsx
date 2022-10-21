@@ -1,16 +1,27 @@
+import Image from "next/image";
 import { ReactElement } from "react";
 import styled from "styled-components";
+import png from "./assets/pixel.png";
 
 const LayoutContainer = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #ffffe0;
 `;
 
 const TitleContainer = styled.div`
   font-size: 2rem;
-  padding: 30px;
+  padding: 30px 30px 0px;
   text-align: center;
+`;
+
+const TvContainer = styled.div`
+  padding: 100px 100px 30px;
+  background-color: #f6f0f9;
+  margin: 0 auto;
+  border-radius: 150px;
+  border: solid 15px #f3bad6;
 `;
 
 const GridContainer = styled.div`
@@ -18,6 +29,9 @@ const GridContainer = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
+  border: solid 2px;
+  border-radius: 20px;
+  overflow: hidden;
 `;
 
 const ColorActionsContainer = styled.div`
@@ -25,12 +39,23 @@ const ColorActionsContainer = styled.div`
 `;
 
 const ColorPaletteContainer = styled.div`
+  padding: 10px;
   flex: 1;
 `;
 
 const ActionsContainer = styled.div`
-  height: 100px;
-  padding: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 30px 0 0;
+  & > button {
+    height: 150px;
+    width: 150px;
+    border: 2px solid white;
+    border-radius: 1000px;
+    font-family: monospace;
+    font-size: 2rem;
+  }
 `;
 
 type Props = {
@@ -42,11 +67,15 @@ type Props = {
 const Layout = ({ colorPalette, grid, actions }: Props) => {
   return (
     <LayoutContainer>
-      <TitleContainer>Pixel Art App</TitleContainer>
-      <GridContainer>{grid}</GridContainer>
+      <TitleContainer>
+        <Image src={png} alt="title logo" />
+      </TitleContainer>
+      <TvContainer>
+        <GridContainer>{grid}</GridContainer>
+        <ActionsContainer>{actions}</ActionsContainer>
+      </TvContainer>
       <ColorActionsContainer>
         <ColorPaletteContainer>{colorPalette}</ColorPaletteContainer>
-        <ActionsContainer>{actions}</ActionsContainer>
       </ColorActionsContainer>
     </LayoutContainer>
   );

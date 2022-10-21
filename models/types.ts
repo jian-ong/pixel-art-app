@@ -22,4 +22,5 @@ export type Color =
   | "#FFED16"
   | "#FF8500"
   | "#E40B27"
+  | "#0181FF"
   | "#000";

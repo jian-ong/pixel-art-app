@@ -30,7 +30,7 @@ const Home: NextPage<{ initialGrid: Color[][] }> = ({ initialGrid }) => {
     "#FDFD97",
     "#FEB144",
     "#FF6663",
-    "#0151FF",
+    "#0181FF",
     "#45BD46",
     "#FFED16",
     "#FF8500",
@@ -41,7 +41,7 @@ const Home: NextPage<{ initialGrid: Color[][] }> = ({ initialGrid }) => {
 
   const [selectedColor, setSelectedColor] = useState<Color | null>(null);
 
-  const resetGrid = () => setGrid(createEmptyGrid(25, 25));
+  const resetGrid = () => setGrid(createEmptyGrid(18, 18));
 
   const handleCellSelect = (
     selectedRowIndex: number,
@@ -90,7 +90,7 @@ const Home: NextPage<{ initialGrid: Color[][] }> = ({ initialGrid }) => {
 export async function getServerSideProps({ query }: any) {
   const initialGrid = query.hash
     ? decodeHashToGrid(query.hash)
-    : createEmptyGrid(25, 25);
+    : createEmptyGrid(18, 18);
   return { props: { initialGrid } };
 }
 
