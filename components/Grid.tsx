@@ -7,8 +7,8 @@ const Row = styled.div`
 `;
 
 const Col = styled.div<{ color: Color }>`
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border: 1px solid black;
   background-color: ${(props) => props.color};
 `;
