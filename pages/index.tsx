@@ -6,6 +6,8 @@ import { ColorPalette } from "../components/ColorPalette";
 import Grid from "../components/Grid";
 import Layout from "../components/Layout";
 import { Color } from "../models/types";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const createEmptyGrid = (numRows: number, numCols: number): Color[][] =>
   new Array(numRows).fill(new Array(numCols).fill("#fff"));
@@ -59,6 +61,34 @@ const Home: NextPage<{ initialGrid: Color[][] }> = ({ initialGrid }) => {
     }
   };
 
+  const handleResetClick = () => {
+    resetGrid();
+    toast("Grid has been reset!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
+  const handleSaveClick = () => {
+    copyHashToClipboard(grid);
+    toast("Saved to clipboard 🦄", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   return (
     <>
       <Head>
@@ -78,8 +108,8 @@ const Home: NextPage<{ initialGrid: Color[][] }> = ({ initialGrid }) => {
         grid={<Grid onCellSelect={handleCellSelect} grid={grid} />}
         actions={
           <>
-            <button onClick={() => copyHashToClipboard(grid)}>save</button>
-            <button onClick={() => resetGrid()}>reset</button>
+            <button onClick={handleSaveClick}>save</button>
+            <button onClick={handleResetClick}>reset</button>
           </>
         }
       />

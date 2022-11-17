@@ -48,6 +48,15 @@ const ActionsContainer = styled.div`
   flex-direction: row;
   justify-content: space-evenly;
   padding: 30px 0 0;
+  &>button: hover {
+    border: 3px solid #d9d9d9;
+  }
+
+  &>button: active {
+    box-shadow: 1px 5px #cccccc;
+    transform: translateY(2px);
+  }
+
   & > button {
     height: 150px;
     width: 150px;
@@ -55,6 +64,7 @@ const ActionsContainer = styled.div`
     border-radius: 1000px;
     font-family: monospace;
     font-size: 2rem;
+    box-shadow: 1px 3px #fff;
   }
 `;
 
